@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax-case</title>
+    <link crossorigin="anonymous" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap-grid.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise 初体验</h2>
+        <button class="btn btn-primary" id="btn">点击发送请求</button>
+    </div>
+
+    <script>
+        // 接口地址 https://api.apiopen.top/getJoke
+        // 获取元素对象
+        const btn = document.querySelector('#btn');
+
+        btn.addEventListener('click', function(){
+            
+            // // 1。创建对象
+            // const xhr = new XMLHttpRequest();
+            // // 2.初始化
+            // xhr.open('GET', 'http://localhost:8000/server');
+            // // 3.发送
+            // xhr.send();
+            // // 4.处理响应结果
+            // xhr.onreadystatechange = function(){
+            //     if(xhr.readyState === 4){
+            //         // 判断响应状态码 2xx
+            //         if(xhr.status >= 200 && xhr.status < 300){
+            //             // 控制台输出响应体
+            //             console.log(xhr.response);
+            //         }else{
+            //             // 控制台输出响应状态码
+            //             console.log(xhr.status);
+            //         }
+            //     }
+            // }
+
+            // Promise
+            // 创建Promise
+            const P = new Promise((resolve, reject) => {
+                    // 1。创建对象
+                const xhr = new XMLHttpRequest();
+                // 2.初始化
+                xhr.open('GET', 'http://localhost:8000/server');
+                // 3.发送
+                xhr.send();
+                // 4.处理响应结果
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4){
+                        // 判断响应状态码 2xx
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            // 控制台输出响应体
+                            resolve(xhr.response);
+                        }else{
+                            // 控制台输出响应状态码
+                            reject(xhr.status);
+                        }
+                    }
+                }
+            });
+            P.then(value=>{
+                console.log(value);
+            }, reason=>{
+                console.warn(reason);
+            });
+        })
+    </script>
+</body>
+</html>

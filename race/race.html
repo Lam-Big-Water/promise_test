@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>race</title>
+</head>
+<body>
+    <script>
+        let P1 = new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                resolve('ok');
+            },1000);
+            
+        })
+        // let P2 = Promise.resolve('Success');
+        let P2 =Promise.resolve('Success');
+        let P3 = Promise.resolve('Oh Yeah');
+
+        const result = Promise.race([P1, P2, P3]);
+
+        console.log(result);
+    </script>
+</body>
+</html>

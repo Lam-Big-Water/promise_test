@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reject</title>
+</head>
+<body>
+    <script>
+        // let P = Promise.reject(521);
+        // let P2 = Promise.reject('fuck');
+        // 永远返回一个失败结果
+        let P3 = Promise.reject(new Promise((resolve, reject) => {
+            resolve('ok');
+        }));
+        console.log(P3);
+    </script>
+</body>
+</html>
